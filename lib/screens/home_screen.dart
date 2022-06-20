@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_golang_yt/routes/routes.dart';
 import 'package:flutter_golang_yt/screens/add_task.dart';
 import 'package:flutter_golang_yt/screens/all_tasks.dart';
 import 'package:flutter_golang_yt/widgets/button_widget.dart';
@@ -26,6 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(
           left: 20,
           right: 20,
+        ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage("assets/welcome.jpg"),
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Get.to(
                   () => AddTask(),
                   transition: Transition.zoom,
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                 );
               },
               child: ButtonWidget(
@@ -75,11 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
             // using InkWell widget to move to the AllTasks screen
             InkWell(
               onTap: () {
-                Get.to(
-                  () => AllTasks(),
-                  transition: Transition.fade,
-                  duration: Duration(seconds: 1),
-                );
+                // using toNamed because getAllTasksRoute returns a string which it gets from AllTasks
+                Get.toNamed(RoutesClass.getAllTasksRoute());
               },
               child: ButtonWidget(
                 backgroundcolor: Colors.white,
@@ -88,12 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ],
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage("assets/welcome.jpg"),
-          ),
         ),
       ),
     );

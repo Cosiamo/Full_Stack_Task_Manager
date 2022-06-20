@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_golang_yt/colors/app_colors.dart';
 import 'package:flutter_golang_yt/controllers/data_controller.dart';
+import 'package:flutter_golang_yt/routes/routes.dart';
 import 'package:flutter_golang_yt/screens/all_tasks.dart';
 import 'package:flutter_golang_yt/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/widgets/error_warning_ms.dart';
@@ -64,12 +65,14 @@ class AddTask extends StatelessWidget {
               children: [
                 // change the height of the arrow
                 const SizedBox(
-                  height: 40,
+                  height: 60,
                 ),
                 IconButton(
                   onPressed: () {
                     Get.back();
                   },
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
                   icon: Icon(
                     Icons.arrow_back,
                     color: AppColors.secondaryColor,
@@ -103,10 +106,8 @@ class AddTask extends StatelessWidget {
                         nameController.text.trim(),
                         detailController.text.trim(),
                       );
-                      Get.to(
-                        () => AllTasks(),
-                        transition: Transition.circularReveal,
-                      );
+                      // offNamed removes earlier route so when you press the back button it doesn't go back to Add Task screen
+                      Get.offNamed(RoutesClass.getAllTasksRoute());
                     }
                   },
                   child: ButtonWidget(
